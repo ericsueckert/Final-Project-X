@@ -30,7 +30,7 @@ build_map<- function(add){
     colorbar = list(title = "Admission Rate"),
     size = 5, opacity = 0.8, symbol = 'circle')
   
-  newdata$hover <- paste(newdata$INSTNM, "has", newdata$ADM_RATE, "percent", 
+  newdata$hover <- paste(newdata$INSTNM, "has", newdata$ADM_RATE, "percent of admission rate", 
                         '<br>', "Location:",newdata$CITY, newdata$ZIP)
                       
   g <- list(
