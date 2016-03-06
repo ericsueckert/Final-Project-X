@@ -1,11 +1,11 @@
 library(dplyr)
 library(plotly)
 
-setwd("/Users/Edward/Downloads")
 setwd("/Users/Edward/Documents/Final-Project-X/data")
 
-newdata<- read.csv("Summarized data.csv")
+
 #data<- read.csv("Most+Recent+Cohorts+(All+Data+Elements).csv")
+## url: "https://catalog.data.gov/dataset/college-scorecard/resource/4a18482a-8617-4bf9-8c37-0da0aa2ac3f8"
 
 newdata<- data %>% filter() %>%
   select(UNITID, INSTNM, CITY, STABBR, ZIP, AccredAgency, INSTURL, NPCURL, main, LATITUDE, 
@@ -15,31 +15,36 @@ newdata<- data %>% filter() %>%
          COSTT4_A, TUITIONFEE_IN, TUITIONFEE_OUT, UGDS_WHITE, UGDS_HISP, UGDS_BLACK,
          UGDS_ASIAN)
 
-
 write.csv(newdata, "Summarized data.csv")
 
-
+newdata<- read.csv("Summarized data.csv")
 ##how to put known 1st, 2nd, 3rd quantile into map? or let R knows that they are quantiles???
-as.data.frame(newdata)
-is.data.frame(newdata)
 
-add<- newdata
+add = newdata
 
+
+  
 build_map<- function(add){
+  
+  m <- list(
+    colorbar = list(title = "Admission Rate"),
+    size = 5, opacity = 0.8, symbol = 'circle')
+  
+  newdata$hover <- paste(newdata$INSTNM, "has", newdata$ADM_RATE, "percent", 
+                        '<br>', "Location:",newdata$CITY, newdata$ZIP)
+                      
   g <- list(
     scope = 'usa',
     projection = list(type = 'albers usa'),
     showland = TRUE,
-    landcolor = toRGB("gray85"),
-    subunitwidth = 1,
-    countrywidth = 1,
-    subunitcolor = toRGB("white"),
-    countrycolor = toRGB("white")
-  )
-  newdata$hover <- paste(newdata$INSTNM, "has", newdata$ADM_RATE, "percent", 
-                       '< br>', "Location:",newdata$CITY, newdata$ZIP)
+    landcolor = toRGB("gray95"),
+    subunitcolor = toRGB("gray85"),
+    countrycolor = toRGB("gray85"),
+    countrywidth = 0.5,
+    subunitwidth = 0.5)
   
-  plot_ly(newdata, lon = LONGITUDE, lat = LATITUDE, text = hover,  color = q, 
-          type = 'scattergeo', locationmode = 'USA-states') %>%
-    layout(title = 'United States College Information', geo = g)
+  plot_ly(add, lat = LATITUDE, lon = LONGITUDE, text = hover, color = 'ADM_RATE',
+          type = 'scattergeo', locationmode = 'USA-states', mode = "markers", marker = m) %>%
+    
+    layout(title = "US College Cards", geo = g)
 }
