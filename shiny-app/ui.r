@@ -5,9 +5,13 @@ library(plotly)
 shinyUI(navbarPage("ACT and SAT scores!",
                    
   # Summary tab
-  tabPanel("Summary"
-           # put summary info here
-           ),
+  tabPanel("Home",
+           # The markdown file goes here
+           fluidPage(
+             htmlOutput('instructions')
+           ) 
+          
+  ),
   
   # Map tab
   tabPanel("Map",
@@ -19,7 +23,7 @@ shinyUI(navbarPage("ACT and SAT scores!",
            mainPanel(
              plotOutput("mapPlot")
            )
-           ),
+  ),
   
   # Hist tab
   tabPanel("Histogram",
@@ -31,5 +35,5 @@ shinyUI(navbarPage("ACT and SAT scores!",
            mainPanel(
              plotOutput("histPlot")
            )
-           )
+  )
 ))
