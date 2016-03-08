@@ -22,16 +22,20 @@ newdata<- read.csv("Summarized data.csv")
 
 add = newdata
 
-
   
-build_map<- function(add){
+newdata$hover <- paste(newdata$INSTNM, "has", newdata$ADM_RATE, "percent of admission rate", 
+                        '<br>', "Location:",newdata$CITY, newdata$ZIP)  
+  
+cols <- RColorBrewer::brewer.pal(3, "Set1")
+
+newdata$ADM_RATE <- as.numeric(as.character(newdata$ADM_RATE))
+
+build_map<- function(add, school_name, ){
   
   m <- list(
     colorbar = list(title = "Admission Rate"),
     size = 5, opacity = 0.8, symbol = 'circle')
-  
-  newdata$hover <- paste(newdata$INSTNM, "has", newdata$ADM_RATE, "percent of admission rate", 
-                        '<br>', "Location:",newdata$CITY, newdata$ZIP)
+
                       
   g <- list(
     scope = 'usa',
@@ -43,8 +47,14 @@ build_map<- function(add){
     countrywidth = 0.5,
     subunitwidth = 0.5)
   
-  plot_ly(add, lat = LATITUDE, lon = LONGITUDE, text = hover, color = 'ADM_RATE',
-          type = 'scattergeo', locationmode = 'USA-states', mode = "markers", marker = m) %>%
-    
+  plot_ly(add, lat = LATITUDE, lon = LONGITUDE, 
+          text = hover, 
+          colors = cols, 
+          color = ADM_RATE, 
+          opacity = 0.5, na.rm = TRUE, 
+          type = 'scattergeo', 
+          locationmode = 'USA-states', 
+          mode = "markers", 
+          marker = m) %>%
     layout(title = "US College Cards", geo = g)
 }
