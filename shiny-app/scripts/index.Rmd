@@ -2,11 +2,8 @@
 title: "Home"
 author: "Derek, Eric, Edward, Nuo"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Vignette Title}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+output: html_document
+
 ---
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
@@ -17,9 +14,6 @@ setwd('C:/Users/chenn/Documents/Info498F/Final-Project-X/shiny-app')
 source('scripts/summary-info.r')
 
 
-
-
-
 ```
 
 Welcome!
@@ -27,41 +21,27 @@ Welcome!
 
 For the final project, we decided to create a visualization that accurately reflects the college admission statistics of over 7000 private/public universities throughout the United States. In addition, we have analyzed the dataset as a whole and produced a state-level report based on our findings. This project is made interactive using `Shiny`, viewers can interact with the map and the graphs to understand the dataset from a different perspective by changing the corresponding inputs.
 
+## Who?
+
+This application is geared toward 
+
 
 
 ## Overview
 Below is a table that ...
 
 ```{r, echo=FALSE, results='asis'}
+names(data_by_state)[names(data_by_state) == 'STABBR'] <- 'State'
 knitr::kable(data_by_state, align = NULL)
 ```
 
-## Figures
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
+## Score Conversion 
 
 ```{r, echo=FALSE}
-#```{r, fig.show='hold'}
+names(score_chart)[names(score_chart) == 'New.SAT..starting.March.2016.'] <- 'New SAT Score'
+names(score_chart)[names(score_chart) == 'Old.SAT..before.March.2016.'] <- 'Old SAT Score'
 
-names(data_by_state)[names(data_by_state) == 'Average SAT Score'] <- 'SAT'
-
-names(data_by_state)[names(data_by_state) == 'Average Acceptance Rate'] <- 'ADM_RATE'
-
-data_by_state$ ADM_RATE <- as.numeric(sub("%", "", data_by_state$ ADM_RATE))
-
-# names(data_by_state)[names(data_by_state) == ''] <- ''
-
-plot_ly(data_by_state, x = SAT, y = ADM_RATE, text = STABBR,
-        mode = "markers", color = ADM_RATE, size = ADM_RATE/1000 )
-
+knitr::kable(score_chart, align = NULL)
 
 ```
-
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.

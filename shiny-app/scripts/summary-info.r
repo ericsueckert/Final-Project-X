@@ -6,6 +6,7 @@ library(ggplot2)
 
 # Extract data from the csv file.
 newdata <- read.csv('data/Summarized data.csv')
+score_chart <- read.csv('data/SAT score conversion chart.csv')
 
 # Convert factor variables to numerical variables
 
