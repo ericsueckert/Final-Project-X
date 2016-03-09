@@ -5,14 +5,18 @@ library(plotly)
 shinyUI(navbarPage("ACT and SAT scores!",
                    
                    tabPanel("Home",
-                            sidebarLayout(
-                              sidebarPanel(
-                                # parameters
-                              ),
-                              mainPanel(
-                                # something pretty
-                              )
+                            fluidPage(
+                              htmlOutput('Home')
                             )
+                            
+                           # sidebarLayout(
+                            #  sidebarPanel(
+                                # parameters
+                             # ),
+                             # mainPanel(
+                             #   # something pretty
+                             # )
+                           # )
                    ),
                    
                    tabPanel("Map",
