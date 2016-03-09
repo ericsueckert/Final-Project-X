@@ -30,7 +30,7 @@ cols <- RColorBrewer::brewer.pal(3, "Set1")
 
 newdata$ADM_RATE <- as.numeric(as.character(newdata$ADM_RATE))
 
-build_map<- function(add, school_name, ){
+build_map<- function(add, states){
   
   m <- list(
     colorbar = list(title = "Admission Rate"),
@@ -47,7 +47,11 @@ build_map<- function(add, school_name, ){
     countrywidth = 0.5,
     subunitwidth = 0.5)
   
-  plot_ly(add, lat = LATITUDE, lon = LONGITUDE, 
+  plot_ly(
+    add%>% 
+      filter(STABBR == states)
+      
+      , lat = LATITUDE, lon = LONGITUDE, 
           text = hover, 
           colors = cols, 
           color = ADM_RATE, 
@@ -55,6 +59,7 @@ build_map<- function(add, school_name, ){
           type = 'scattergeo', 
           locationmode = 'USA-states', 
           mode = "markers", 
+
           marker = m) %>%
     layout(title = "US College Cards", geo = g)
 }
