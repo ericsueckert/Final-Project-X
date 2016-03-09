@@ -10,7 +10,7 @@ build_map <- function(df) {
     size = 5, opacity = 0.8, symbol = 'circle')
   
   df$hover <- paste(df$INSTNM, "has", df$ADM_RATE, "percent of admission rate", 
-                         '<br>', "Location:",df$CITY, df$ZIP)
+                    '<br>', "Location:",df$CITY, df$ZIP)
   
   g <- list(
     scope = 'usa',
@@ -22,10 +22,10 @@ build_map <- function(df) {
     countrywidth = 0.5,
     subunitwidth = 0.5)
   
-  plot_ly(df, lat = LATITUDE, lon = LONGITUDE, text = hover, color = 'ADM_RATE',
-          type = 'scattergeo', locationmode = 'USA-states', mode = "markers", marker = m) %>%
-    
-    layout(title = "US College Cards", geo = g) %>% 
-    return()
+  p <- plot_ly(df, lat = LATITUDE, lon = LONGITUDE, text = hover, color = ADM_RATE,
+               type = 'scattergeo', locationmode = 'USA-states', mode = "markers", marker = m)
+  
+  layout(p, title = "US College Cards", geo = g) %>% 
+  return()
 
 }

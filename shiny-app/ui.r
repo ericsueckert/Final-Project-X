@@ -25,7 +25,7 @@ shinyUI(navbarPage("ACT and SAT scores!",
                                 # map parameters
                               ),
                               mainPanel(
-                                # plotOutput("mapPlot")
+                                plotlyOutput("mapPlot")
                               )
                             )
                    ),

@@ -5,14 +5,15 @@ library(plotly)
 library(rsconnect)
 source('scripts/build_map.r')
 
-newdata<- read.csv("data/Summarized data.csv")
+setwd("/Users/Potato/Documents/info498/Final-Project-X/shiny-app")
+df<- read.csv("data/Summarized data.csv")
 
 shinyServer(function(input, output, session) {
   output$Home <- renderText({
     readLines("scripts/index.html")  
   })
-  # Render plotly
+  # Render map plotly
   output$mapPlot <- renderPlotly({
-    build_map(newdata)
+    build_map(df)
   })  
 })
