@@ -19,8 +19,8 @@ build_map <- function(df) {
     landcolor = toRGB("gray95"),
     subunitcolor = toRGB("gray85"),
     countrycolor = toRGB("gray85"),
-    countrywidth = 0.5,
-    subunitwidth = 0.5)
+    countrywidth = 1,
+    subunitwidth = 1)
   
   p <- plot_ly(df, lat = LATITUDE, lon = LONGITUDE, text = hover, color = ADM_RATE,
                type = 'scattergeo', locationmode = 'USA-states', mode = "markers", marker = m)

@@ -38,5 +38,25 @@ shinyUI(navbarPage("ACT and SAT scores!",
                                 # plotOutput("histPlot")
                               )
                             )
+                   ),
+                   tabPanel("FAQ",
+                            sidebarLayout(
+                              sidebarPanel(
+                                
+                              ),
+                              mainPanel(
+                                
+                              )
+                            )
+                   ),
+                   tabPanel("Reference",
+                            sidebarLayout(
+                              sidebarPanel(
+                                
+                              ),
+                              mainPanel(
+                                
+                              )
+                            )
                    )
 ))
