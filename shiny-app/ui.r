@@ -4,36 +4,35 @@ library(plotly)
 
 shinyUI(navbarPage("ACT and SAT scores!",
                    
-  # Summary tab
-  tabPanel("Home",
-           # The markdown file goes here
-           fluidPage(
-             htmlOutput('instructions')
-           ) 
-          
-  ),
-  
-  # Map tab
-  tabPanel("Map",
-           sidebarLayout(
-             sidebarPanel(
-               # map parameters go here
-             )
-           ),
-           mainPanel(
-             plotOutput("mapPlot")
-           )
-  ),
-  
-  # Hist tab
-  tabPanel("Histogram",
-           sidebarLayout(
-             sidebarPanel(
-               # histogram parameters go here
-             )
-           ),
-           mainPanel(
-             plotOutput("histPlot")
-           )
-  )
+                   tabPanel("Home",
+                            sidebarLayout(
+                              sidebarPanel(
+                                # parameters
+                              ),
+                              mainPanel(
+                                # something pretty
+                              )
+                            )
+                   ),
+                   
+                   tabPanel("Map",
+                            sidebarLayout(
+                              sidebarPanel(
+                                # map parameters
+                              ),
+                              mainPanel(
+                                # plotOutput("mapPlot")
+                              )
+                            )
+                   ),
+                   tabPanel("Histogram",
+                            sidebarLayout(
+                              sidebarPanel(
+                                # hist parameters
+                              ),
+                              mainPanel(
+                                # plotOutput("histPlot")
+                              )
+                            )
+                   )
 ))
