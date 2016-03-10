@@ -6,7 +6,7 @@ shinyUI(navbarPage("ACT and SAT scores!",
                    
                    tabPanel("Home",
                             fluidPage(
-                              htmlOutput('Home')
+                              includeHTML("scripts/index.html")
                             )
                             
                            # sidebarLayout(
@@ -74,7 +74,7 @@ shinyUI(navbarPage("ACT and SAT scores!",
                    ),
                    tabPanel("FAQ",
                             fluidPage(
-                              htmlOutput('FAQ')
+                              includeHTML("scripts/FAQ.html")
                             )
                             
                             # sidebarLayout(

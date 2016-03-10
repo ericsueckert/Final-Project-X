@@ -9,9 +9,9 @@ source('scripts/plotScript.R')
 df<- read.csv("data/Summarized data.csv")
 
 shinyServer(function(input, output, session) {
-  output$Home <- renderText({
-    readLines("scripts/index.html")  
-  })
+  #output$Home <- renderText({
+  #  readLines("scripts/index.html")  
+  #})
   # Render map plotly
   output$mapPlot <- renderPlotly({
     build_map(df)
@@ -29,8 +29,8 @@ shinyServer(function(input, output, session) {
   })
   
   # Output for FAQ page
-  output$FAQ <- renderText({
-    readLines("scripts/FAQ.html")  
-  })
+  #output$FAQ <- renderText({
+  #  readLines("scripts/FAQ.html")  
+  #})
   
 })
