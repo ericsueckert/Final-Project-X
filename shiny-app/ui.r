@@ -73,14 +73,18 @@ shinyUI(navbarPage("ACT and SAT scores!",
                             )
                    ),
                    tabPanel("FAQ",
-                            sidebarLayout(
-                              sidebarPanel(
-                                
-                              ),
-                              mainPanel(
-                                
-                              )
+                            fluidPage(
+                              htmlOutput('FAQ')
                             )
+                            
+                            # sidebarLayout(
+                            #  sidebarPanel(
+                                
+                            #  ),
+                            #  mainPanel(
+                                
+                            #  )
+                           # )
                    ),
                    tabPanel("Reference",
                             sidebarLayout(

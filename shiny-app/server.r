@@ -27,4 +27,10 @@ shinyServer(function(input, output, session) {
   output$actPlot = renderPlotly({
     dotPlotOutput(df,"ACT",paste0(input$actSubject, input$actPercentile))
   })
+  
+  # Output for FAQ page
+  output$FAQ <- renderText({
+    readLines("scripts/FAQ.html")  
+  })
+  
 })
