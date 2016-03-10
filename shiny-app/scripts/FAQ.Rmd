@@ -1,5 +1,5 @@
 ---
-title: "FAQ"
+title: "Frequently Asked Questions"
 output: html_document
 ---
 
@@ -7,9 +7,7 @@ output: html_document
 
 ```
 
-### Quick Answers:
-
-Let's get started!
+### Let's get started!
 
 - Do you see your question? If not, please contack nuo@uw.edu via email for additional help.
 - This application is meant to be a primary search tool for students to have a general idea of the Universities, for more detailed admission requirements and the most recent statistics please check their official site. 
