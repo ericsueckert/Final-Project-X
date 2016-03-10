@@ -87,13 +87,16 @@ shinyUI(navbarPage("ACT and SAT scores!",
                            # )
                    ),
                    tabPanel("Reference",
-                            sidebarLayout(
-                              sidebarPanel(
-                                
-                              ),
-                              mainPanel(
-                                
-                              )
+                            fluidPage(
+                              includeHTML("scripts/reference.html")
                             )
+                            #sidebarLayout(
+                             # sidebarPanel(
+                                
+                             # ),
+                             # mainPanel(
+                                
+                             # )
+                            #)
                    )
 ))
