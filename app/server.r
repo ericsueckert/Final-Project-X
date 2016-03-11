@@ -7,6 +7,7 @@ library(rsconnect)
 source('scripts/build_map.r')
 source('scripts/plotScript.R')
 source("scripts/summary-info.r")
+source("scripts/build_map2.r")
 
 df<- read.csv("data/Summarized data.csv")
 
@@ -23,6 +24,12 @@ shinyServer(function(input, output, session) {
   output$satPlot = renderPlotly({
     dotPlotOutput(df,"SAT",paste0(input$satSubject, input$satPercentile))
   })
+  
+  # Create the output for choropleth map
+  output$Choropleth <- renderPlotly({
+    build_new_map(data_for_map, input$ADM_Score)
+  })
+  
   
   # Create the output the ACT Plot data
   

@@ -27,6 +27,23 @@ shinyUI(navbarPage("ACT and SAT scores!",
                               )
                             )
                    ),
+                   
+                   tabPanel("Choropleth Map",
+                            sidebarLayout(
+                              sidebarPanel(
+                                selectInput("ADM_Score", label = h3("Choose SAT Score or Admission Rate"), 
+                                            choices = list("Average SAT Score" = 'Average_SAT_Score', "Average Admission Rate" = 'Average_Acceptance_Rate'), 
+                                            selected = 'Average_SAT_Score')
+                                            ),
+                            
+                              mainPanel(
+                                plotlyOutput("Choropleth")
+                              )
+                            )
+                            ),
+                   
+                   
+                   
                    tabPanel("ACT and SAT Plots",
                             # Apply the title panel
                             titlePanel("SAT and ACT scores"),
