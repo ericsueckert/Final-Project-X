@@ -29,7 +29,8 @@ This application is created to assist future generations of test takers who are 
 
 
 ## Overview
-Below is a table that ...
+
+According to our analysis based on the raw data, the average SAT test score accross all the Universities is `r Ave_sat` while the average acceptance rate is `r Ave_rate * 100`%. Hypothetically speaking, if you get a SAT score higher than or equal to 1057, you can get in just about any school in U.S. In addition, out of all the university applicants, 68.2% are admitted which means two out of three people who applied ended up in college. (Getting out of college, however, is an entirely different story)
 
 ```{r, echo=FALSE, results='asis'}
 names(data_by_state)[names(data_by_state) == 'STABBR'] <- 'State'
@@ -37,12 +38,3 @@ knitr::kable(data_by_state, align = NULL)
 ```
 
 
-## Score Conversion 
-
-```{r, echo=FALSE}
-names(score_chart)[names(score_chart) == 'New.SAT..starting.March.2016.'] <- 'New SAT Score'
-names(score_chart)[names(score_chart) == 'Old.SAT..before.March.2016.'] <- 'Old SAT Score'
-
-knitr::kable(score_chart, align = NULL)
-
-```
