@@ -31,6 +31,9 @@ data_by_state <-  newdata %>%
                               avg_acc = paste0(mean(ADM_RATE, na.rm = TRUE) %>% round(digit = 3) * 100, '%')) %>% 
                     na.omit()
 
+# create a different data frome to be use for map
+map_df <- data_by_state
+
 names <- c("State", "Average SAT Score", "Average Cost of Attendance", "Average Acceptance Rate")
 
 # change column names

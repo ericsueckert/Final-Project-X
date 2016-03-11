@@ -33,12 +33,16 @@ shinyUI(navbarPage("ACT and SAT scores!",
                                             "Upper SAT bound", 
                                             value = 1600,
                                             min = 400, 
-                                            max = 1600)
+                                            max = 1600),
+                                
+                                selectInput("ADM_Score", label = h3("State Averages"), 
+                                            choices = list("Average SAT Score" = "avg_SAT", "Average Admission Rate" = "avg_acc"), 
+                                            selected = 'avg_SAT')
                               ),
                               mainPanel(
                                 plotlyOutput("SATmap"),
                                 hr(),
-                                plotlyOutput("mapPlot")
+                                plotlyOutput("map2")
                               )
                             )
                    ),
