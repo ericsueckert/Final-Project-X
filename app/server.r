@@ -13,6 +13,7 @@ df<- read.csv("data/Summarized data.csv")
 shinyServer(function(input, output, session) {
   
   textstuff <- renderPrint({ "foo" })
+    
   
   output$mapPlot <- renderPlotly({
     build_map(df)

@@ -5,9 +5,16 @@ library(plotly)
 shinyUI(navbarPage("ACT and SAT scores!",
                    
                    tabPanel("Home",
+                            sidebarLayout(
+                              sidebarPanel(
+                                img(src='SAT-Subject-Tests-And-College-Board.jpg', height = 250, width = 250)
+                              ),
                               mainPanel(
                                 includeMarkdown("scripts/index.Rmd")
-                              )
+                              )#,
+                              #position = c("left", "right"),
+                              #fluid = TRUE
+                            )
                    ),
                    
                    tabPanel("Map",
@@ -64,21 +71,37 @@ shinyUI(navbarPage("ACT and SAT scores!",
                             )
                    ),
                    tabPanel("FAQ",
+                            sidebarLayout(
+                              sidebarPanel(
+                                img(src='collegeBoard_logo.jpeg', height = 250, width = 250)
+                              ),
                               mainPanel(
                                 includeMarkdown("scripts/FAQ.Rmd")
                               )
-                            
+                            )
                    ),
                    tabPanel("Reference",
+                            sidebarLayout(
+                              sidebarPanel(
+                                img(src='ACT_logo.png ', height = 250, width = 250),
+                                img(src='SAT-Logo.png', height = 250, width = 250)
+                              ),
                               mainPanel(
                                 includeMarkdown("scripts/reference.Rmd"),
                                 dataTableOutput("conversionTable")
                               )
-                            
+                            )
                    ),
-                   tabPanel("Table",
-                            mainPanel(
-                              print(h3("State data: ")),
-                              dataTableOutput("table")
-                            ))
+                   tabPanel("Admission statistics",
+                            sidebarLayout(
+                              sidebarPanel(
+                                img(src='College_logo.jpg', height = 500, width = 250)
+                              ),
+                            
+                              mainPanel(
+                                print(h3("State data: ")),
+                                dataTableOutput("table")
+                              )
+                            )
+                            )
 ))
