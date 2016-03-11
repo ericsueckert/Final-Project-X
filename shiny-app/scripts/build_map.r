@@ -1,9 +1,6 @@
 library(dplyr)
 library(plotly)
 
-setwd("/Users/Edward/Documents/Final-Project-X/shiny-app/data")
-
-
 #data<- read.csv("Most+Recent+Cohorts+(All+Data+Elements).csv")
 ## url: "https://catalog.data.gov/dataset/college-scorecard/resource/4a18482a-8617-4bf9-8c37-0da0aa2ac3f8"
 
