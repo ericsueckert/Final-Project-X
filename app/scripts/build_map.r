@@ -1,17 +1,19 @@
 # Create a function that builds a map
-# Require Packages
-library(dplyr)
-library(plotly)
 
-build_map <- function(df) {
+build_map<- function(add, lower_SAT, upper_SAT){
   
+  # Create data frame for Map data
+  final_data<- add %>%
+    filter( upper_SAT >= SAT_AVG) %>%
+    filter( lower_SAT <= SAT_AVG) %>%
+    select(INSTNM, LATITUDE, LONGITUDE, ADM_RATE, hover)
+  
+  # Parameters for markers
   m <- list(
     colorbar = list(title = "Admission Rate"),
-    size = 5, opacity = 0.8, symbol = 'circle')
+    size = 5, opacity = 0.5, symbol = 'circle')
   
-  df$hover <- paste(df$INSTNM, "has", df$ADM_RATE, "percent of admission rate", 
-                    '<br>', "Location:",df$CITY, df$ZIP)
-  
+  # Parameters for map
   g <- list(
     scope = 'usa',
     projection = list(type = 'albers usa'),
@@ -19,13 +21,22 @@ build_map <- function(df) {
     landcolor = toRGB("gray95"),
     subunitcolor = toRGB("gray85"),
     countrycolor = toRGB("gray85"),
-    countrywidth = 1,
-    subunitwidth = 1)
+    countrywidth = 0.5,
+    subunitwidth = 0.5)
   
-  p <- plot_ly(df, lat = LATITUDE, lon = LONGITUDE, text = hover, color = ADM_RATE,
-               type = 'scattergeo', locationmode = 'USA-states', mode = "markers", marker = m)
-  
-  layout(p, title = "US College Cards", geo = g) %>% 
-  return()
-
+  # plotly parameters
+  plot_ly(
+    final_data, 
+    lat = LATITUDE,
+    lon = LONGITUDE, 
+    text = hover, 
+    color = ADM_RATE * 100, 
+    opacity = 0.75, 
+    na.rm = TRUE, 
+    type = 'scattergeo', 
+    locationmode = 'USA-states', 
+    size = ADM_RATE, 
+    mode = "markers", 
+    marker = m) %>%
+    layout(title = "US College Cards", geo = g)
 }

@@ -1,8 +1,4 @@
 # This file is for data analysis
-# Require Packages
-library(dplyr)
-library(plotly)
-library(ggplot2)
 
 # Extract data from the csv file.
 newdata <- read.csv('data/Summarized data.csv')
@@ -30,10 +26,15 @@ Ave_sat <- mean(newdata$SAT_AVG, na.rm = TRUE) %>%
 # Create a summary table that shows the average cost of attendance, and admission rate by state
 data_by_state <-  newdata %>% 
                     group_by(STABBR) %>% 
-                    summarise("Average SAT Score" = mean(SAT_AVG, na.rm = TRUE) %>% round(digit = 0),
-                              "Average Cost of Attendance" = mean(COSTT4_A, na.rm = TRUE) %>% round(digit = 2),
-                              "Average Acceptance Rate" = paste0(mean(ADM_RATE, na.rm = TRUE) %>% round(digit = 3) * 100, '%')) %>% 
+                    summarise(avg_SAT = mean(SAT_AVG, na.rm = TRUE) %>% round(digit = 0),
+                              avg_att = mean(COSTT4_A, na.rm = TRUE) %>% round(digit = 2),
+                              avg_acc = paste0(mean(ADM_RATE, na.rm = TRUE) %>% round(digit = 3) * 100, '%')) %>% 
                     na.omit()
+
+names <- c("State", "Average SAT Score", "Average Cost of Attendance", "Average Acceptance Rate")
+
+# change column names
+names(data_by_state) <- names
 
 # Create a graph
 

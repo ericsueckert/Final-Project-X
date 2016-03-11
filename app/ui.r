@@ -13,9 +13,31 @@ shinyUI(navbarPage("ACT and SAT scores!",
                    tabPanel("Map",
                             sidebarLayout(
                               sidebarPanel(
-                                # map parameters
+                                
+                                # Sliders for map: One for upper bound, one for lower bound
+                                # IMPORTANT: Map freaks out if sliders are in certain behavior.
+                                # Case 1 freakout: lower bound slider is at bottom, and upper bound slider is very close to lower bound, in other words when there are no data points in between
+                                # Case 2: basically the opposite. Both upper and lower are very near the top with no data in between
+                                # Case 3: when lower bound goes above upper bound
+                                # Map reloads when you set the sliders reasonably. 
+                                # Alternatively, use a different method of input for SAT bounds. Radio buttons or w/e
+                                
+                                # IMPORTANT 2: for some reason when the range of the sliders is small, the circles become larger. I don't know why that is.
+                                
+                                sliderInput("lower", 
+                                            "Lower SAT bound", 
+                                            value = 400,
+                                            min = 400, 
+                                            max = 1600),
+                                sliderInput("upper", 
+                                            "Upper SAT bound", 
+                                            value = 1600,
+                                            min = 400, 
+                                            max = 1600)
                               ),
                               mainPanel(
+                                plotlyOutput("SATmap"),
+                                hr(),
                                 plotlyOutput("mapPlot")
                               )
                             )
@@ -63,12 +85,14 @@ shinyUI(navbarPage("ACT and SAT scores!",
                               )
                             )
                    ),
+                   # FAQ panel, includes a markdown file
                    tabPanel("FAQ",
                               mainPanel(
                                 includeMarkdown("scripts/FAQ.Rmd")
                               )
                             
                    ),
+                   # Reference tab, includes a markdown file followed by a data table output
                    tabPanel("Reference",
                               mainPanel(
                                 includeMarkdown("scripts/reference.Rmd"),
@@ -76,9 +100,18 @@ shinyUI(navbarPage("ACT and SAT scores!",
                               )
                             
                    ),
-                   tabPanel("Table",
+                   # State tab, includes data table
+                   tabPanel("State Data",
                             mainPanel(
-                              print(h3("State data: ")),
+                              print(h3("Averages by State: ")),
                               dataTableOutput("table")
-                            ))
+                            )
+                            ),
+                   # Contact us tab, includes 
+                   tabPanel("Contact Us",
+                            mainPanel(
+                              print(h3("Email: ")),
+                              includeMarkdown("scripts/contact.Rmd")
+                            )
+                   )
 ))
