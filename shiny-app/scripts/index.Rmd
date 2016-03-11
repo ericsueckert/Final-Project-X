@@ -10,7 +10,7 @@ output: html_document
 library(dplyr)
 library(plotly)
 library(ggplot2)
-setwd('C:/Users/chenn/Documents/Info498F/Final-Project-X/shiny-app')
+setwd()
 source('scripts/summary-info.r')
 
 

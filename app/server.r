@@ -3,16 +3,17 @@ library(shiny)
 library(dplyr)
 library(plotly)
 library(rsconnect)
+
 source('scripts/build_map.r')
 source('scripts/plotScript.R')
+source("scripts/summary-info.r")
 
 df<- read.csv("data/Summarized data.csv")
 
 shinyServer(function(input, output, session) {
-#   output$Home <- renderText({
-#     readLines("scripts/index.html")  
-#   })
-  # Render map plotly
+  
+  textstuff <- renderPrint({ "foo" })
+  
   output$mapPlot <- renderPlotly({
     build_map(df)
   })
@@ -27,4 +28,13 @@ shinyServer(function(input, output, session) {
   output$actPlot = renderPlotly({
     dotPlotOutput(df,"ACT",paste0(input$actSubject, input$actPercentile))
   })
+  
+  output$table = renderDataTable(
+    data_by_state
+  )
+  
+  output$conversionTable = renderDataTable(
+    score_chart
+  )
+  
 })

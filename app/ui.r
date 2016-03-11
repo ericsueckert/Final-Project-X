@@ -6,10 +6,7 @@ shinyUI(navbarPage("ACT and SAT scores!",
                    
                    tabPanel("Home",
                               mainPanel(
-                                
-                                # The following command includeHTML when run, prevents plots from rendering.
-                                
-                                # includeHTML("scripts/index.html")
+                                includeMarkdown("scripts/index.Rmd")
                               )
                    ),
                    
@@ -67,23 +64,21 @@ shinyUI(navbarPage("ACT and SAT scores!",
                             )
                    ),
                    tabPanel("FAQ",
-                            sidebarLayout(
-                              sidebarPanel(
-                                
-                              ),
                               mainPanel(
-                                
+                                includeMarkdown("scripts/FAQ.Rmd")
                               )
-                            )
+                            
                    ),
                    tabPanel("Reference",
-                            sidebarLayout(
-                              sidebarPanel(
-                                
-                              ),
                               mainPanel(
-                                
+                                includeMarkdown("scripts/reference.Rmd"),
+                                dataTableOutput("conversionTable")
                               )
-                            )
-                   )
+                            
+                   ),
+                   tabPanel("Table",
+                            mainPanel(
+                              print(h3("State data: ")),
+                              dataTableOutput("table")
+                            ))
 ))
