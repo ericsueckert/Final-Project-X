@@ -47,7 +47,6 @@ dotPlotOutput = function(dataFrame, test, target,limitAdm) {
   titleText = paste(test, " Score vs Admittance statistics")
   
   # Apply the layout parameters
-  layout(plot, xaxis = list(title = "Hi"), yaxis = list(title = "hello"), title = titleText)
-  
-  return(plot)
+  layout(plot, xaxis = xList, yaxis = yList, title = titleText) %>%
+  return()
 }
