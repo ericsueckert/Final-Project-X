@@ -8,7 +8,7 @@ shinyUI(navbarPage("ACT and SAT scores!",
                               mainPanel(
                                 includeMarkdown("scripts/index.Rmd")
                               )
-                   ),
+                        ),
                    
                    tabPanel("Map",
                             sidebarLayout(
@@ -49,8 +49,8 @@ shinyUI(navbarPage("ACT and SAT scores!",
                             sidebarLayout(
                               sidebarPanel(
                                 # Createa a check group that shows which species should be shown on the display
-                                checkboxGroupInput("actPercentile", label = h3("Select ACT Percentile"), 
-                                                   choices = list("25th Percentile" = "75", "Mid Percentile" = "MID", "75th Percentile" = "75"),
+                                selectInput("actPercentile", label = h3("Select ACT Percentile"), 
+                                                   choices = list("25th Percentile" = "25", "Mid Percentile" = "MID", "75th Percentile" = "75"),
                                                    selected = "MID"
                                 ),
                                 
@@ -61,11 +61,15 @@ shinyUI(navbarPage("ACT and SAT scores!",
                                             selected = "ACTEN"
                                 ),
                                 
+                                # Input a slider to limit the range of act scores and admission rate
+                                sliderInput("actAdmSlide", label = h3("ACT Admission Bound"), min = 0, max = 1,
+                                            value = c(0,1)),
+                                
                                 # Input line break
                                 hr(),
                                 
-                                checkboxGroupInput("satPercentile", label = h3("Select SAT Percentile"), 
-                                                   choices = list("25th Percentile" = "75", "Mid Percentile" = "MID", "75th Percentile" = "75"),
+                                selectInput("satPercentile", label = h3("Select SAT Percentile"), 
+                                                   choices = list("25th Percentile" = "25", "Mid Percentile" = "MID", "75th Percentile" = "75"),
                                                    selected = "MID"
                                 ),
                                 
@@ -74,6 +78,10 @@ shinyUI(navbarPage("ACT and SAT scores!",
                                             choices = list("Reading" = "SATVR", "Writing" = "SATWR",
                                                            "Math" = "SATMT"), 
                                             selected = "SATVR"),
+                                
+                                # Input a slider to limit the range of act scores and admission rates
+                                sliderInput("satAdmSlide", label = h3("SAT Admission Bound"), min = 0, max = 1,
+                                            value = c(0,1)),
                                 
                                 # Input line break
                                 hr()

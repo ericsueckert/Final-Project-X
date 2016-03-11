@@ -1,17 +1,27 @@
 # This provides code that produces the various SAT and ACT plots
+library("plotly")
+library("dplyr")
 
-dotPlotOutput = function(dataFrame, test, target) {
+dotPlotOutput = function(dataFrame, test, target,limitAdm) {
   
   # Generate vectors detailing the columns that should be selected from the data set
   nameIndex = which(colnames(dataFrame) == "INSTNM")
   rateIndex = which(colnames(dataFrame) == "ADM_RATE")
-  
+  hoverIndex = which(colnames(dataFrame) == "hover")
   # Set the plot title
   titleText = test
   
+  # Narrow down the data
   testData = which(colnames(dataFrame) == target)
-  selectedCol = c(nameIndex, testData, rateIndex)
+  selectedCol = c(nameIndex, testData, rateIndex, hoverIndex)
   PlotData = dataFrame[selectedCol]
+  # Reset the column name of the test data for easier use
+  colnames(PlotData)[colnames(PlotData) == target] = "testScore"
+  # Cut down the plot data
+  PlotData = PlotData %>% filter(!is.na(ADM_RATE)) %>% filter(testScore != "NULL") %>%
+             filter(ADM_RATE > limitAdm[1], ADM_RATE < limitAdm[2])
+             
+  
   
   # Set the font type for labels
   fontSet <- list(
@@ -30,6 +40,7 @@ dotPlotOutput = function(dataFrame, test, target) {
                  x = PlotData[[2]],
                  y = PlotData[[3]], 
                  mode = "markers",
+                 text = PlotData[[4]],
                  color = ADM_RATE)
   
   # Set the title text for the plots
