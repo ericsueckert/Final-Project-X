@@ -1,0 +1,48 @@
+---
+title: "Home"
+author: "Derek, Eric, Edward, Nuo"
+date: "`r Sys.Date()`"
+output: html_document
+
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(plotly)
+library(ggplot2)
+setwd('C:/Users/chenn/Documents/Info498F/Final-Project-X/shiny-app')
+source('scripts/summary-info.r')
+
+
+```
+
+Welcome!
+========
+
+For the final project, we decided to create a visualization that accurately reflects the college admission statistics of over 7000 private/public universities throughout the United States. In addition, we have analyzed the dataset as a whole and put together an interactive platform that filters down the list of schools based on your test scores and area of interest. This project is made interactive using `Shiny`, viewers can interact with the map and the graphs to understand the dataset from a different perspective by changing the corresponding inputs.
+
+# Introduction
+
+> On March 5, 2014, College Board announced that a redesigned version of the SAT would be administered for the first time in 2016. The exam will revert to the 1600-point scale, the essay will be optional, and students will have three hours to take the exam plus 50 additional minutes to complete the essay. 
+
+This application is created to assist future generations of test takers who are struggling to apply for college. Instead of spending hours of time randomly searching on internet for a slim chance to find the right fit for you, this application enables you to come up with a list of universities that you are likely to get in based on your test scores and region of interest.  
+
+
+## Overview
+Below is a table that ...
+
+```{r, echo=FALSE, results='asis'}
+names(data_by_state)[names(data_by_state) == 'STABBR'] <- 'State'
+knitr::kable(data_by_state, align = NULL)
+```
+
+
+## Score Conversion 
+
+```{r, echo=FALSE}
+names(score_chart)[names(score_chart) == 'New.SAT..starting.March.2016.'] <- 'New SAT Score'
+names(score_chart)[names(score_chart) == 'Old.SAT..before.March.2016.'] <- 'Old SAT Score'
+
+knitr::kable(score_chart, align = NULL)
+
+```
