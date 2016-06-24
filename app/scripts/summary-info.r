@@ -3,6 +3,7 @@
 # Extract data from the csv file.
 newdata <- read.csv('data/Summarized data.csv')
 score_chart <- read.csv('data/SAT score conversion chart.csv')
+names(score_chart) <- c("ACT", "New SAT", "Old SAT")
 
 # Convert factor variables to numerical variables
 

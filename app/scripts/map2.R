@@ -23,6 +23,5 @@ build_new_map <- function(map_df, column) {
           colors = 'Purples',
           marker = list(line = l), 
           colorbar = list(title = "Score/percentage")) %>%
-    layout(title = 'US College Statistics', geo = g) %>% 
-    return()
+    layout(title = 'US College Statistics', geo = g)
 }
