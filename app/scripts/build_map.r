@@ -1,11 +1,12 @@
 # Create a function that builds a map
 
-build_map<- function(add, lower_SAT, upper_SAT){
+build_map<- function(add, SAT_bound){
   
+  #SAT_bound <- c(400, 1600)
+  #add <- df
   # Create data frame for Map data
   final_data<- add %>%
-    filter( upper_SAT >= SAT_AVG) %>%
-    filter( lower_SAT <= SAT_AVG) %>%
+    filter( SAT_bound[1] <= SAT_AVG, SAT_bound[2] >= SAT_AVG) %>%
     select(INSTNM, LATITUDE, LONGITUDE, ADM_RATE, hover)
   
   # Parameters for markers
@@ -29,7 +30,7 @@ build_map<- function(add, lower_SAT, upper_SAT){
     final_data, 
     lat = LATITUDE,
     lon = LONGITUDE, 
-    text = hover, 
+    text = final_data[[5]], 
     color = ADM_RATE * 100, 
     opacity = 0.75, 
     na.rm = TRUE, 
@@ -38,5 +39,5 @@ build_map<- function(add, lower_SAT, upper_SAT){
     size = ADM_RATE, 
     mode = "markers", 
     marker = m) %>%
-    layout(title = "US College Cards", geo = g)
+    layout(title = "US College Cards", geo = g, hovermode = "closest")
 }

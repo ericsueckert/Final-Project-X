@@ -24,16 +24,14 @@ shinyUI(navbarPage("ACT and SAT scores!",
                                 
                                 # IMPORTANT 2: for some reason when the range of the sliders is small, the circles become larger. I don't know why that is.
                                 
-                                sliderInput("lower", 
-                                            "Lower SAT bound", 
-                                            value = 400,
+                                sliderInput("bound", 
+                                            "SAT Score Bound", 
+                                            value = c(400, 1600),
                                             min = 400, 
                                             max = 1600),
-                                sliderInput("upper", 
-                                            "Upper SAT bound", 
-                                            value = 1600,
-                                            min = 400, 
-                                            max = 1600),
+                                
+                                # line break
+                                hr(),
                                 
                                 selectInput("ADM_Score", label = h3("State Averages"), 
                                             choices = list("Average SAT Score" = "avg_SAT", "Average Admission Rate" = "avg_acc"), 

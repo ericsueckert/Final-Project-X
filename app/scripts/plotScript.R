@@ -2,7 +2,7 @@
 library("plotly")
 library("dplyr")
 
-dotPlotOutput = function(dataFrame, test, target,limitAdm) {
+dotPlotOutput = function(dataFrame, test, target, limitAdm) {
   
   # Generate vectors detailing the columns that should be selected from the data set
   nameIndex = which(colnames(dataFrame) == "INSTNM")
@@ -30,6 +30,9 @@ dotPlotOutput = function(dataFrame, test, target,limitAdm) {
     color = "#7f7f7f"
   )
   
+  m <- list(
+    colorbar = list(title = "Admission Rate"))
+  
   # Set the x and y axis labels
   xList = list(title = "Score", titlefont = fontSet)
   yList = list(title = "Admittance Rate", titlefont = fontSet)
@@ -41,11 +44,12 @@ dotPlotOutput = function(dataFrame, test, target,limitAdm) {
                  y = PlotData[[3]], 
                  mode = "markers",
                  text = PlotData[[4]],
-                 color = ADM_RATE)
+                 color = ADM_RATE,
+                 marker = m)
   
   # Set the title text for the plots
   titleText = paste(test, " Score vs Admittance statistics")
   
   # Apply the layout parameters
-  layout(plot, xaxis = xList, yaxis = yList, title = titleText)
+  layout(plot, xaxis = xList, yaxis = yList, title = titleText, hovermode = "closest")
 }

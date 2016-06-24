@@ -4,7 +4,7 @@ library(dplyr)
 library(plotly)
 library(rsconnect)
 
-setwd("/Users/Potato/Documents/info498/Final-Project-X/app")
+setwd("C:/Users/v-erecke/Documents/R scripts/College Admission Statistics/Final-Project-X/app")
 # Link script files
 source('scripts/build_map.r')
 source('scripts/plotScript.R')
@@ -38,7 +38,7 @@ shinyServer(function(input, output, session) {
   
   # output map
   output$SATmap <- renderPlotly({
-    build_map(df, input$lower, input$upper)
+    build_map(df, input$bound)
   })
   
   # secont output map
